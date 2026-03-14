@@ -13,14 +13,14 @@ for device in devices:
     print(device) # Example output: Lock(id=CD0A1221C291)
 
 # Assuming you have the device ID for your lock
-#LOCK_DEVICE_ID = 'YOUR_LOCK_DEVICE_ID' 
+LOCK_DEVICE_ID = 'FFB4AF5C4B63' 
 
 # Get a specific lock device object
-#lock = switchbot.device(id=LOCK_DEVICE_ID)
+lock = switchbot.device(id=LOCK_DEVICE_ID)
 
 # Lock the door
 #print("Locking the door...")
-#lock.lock()
+lock.lock()
 
 # Unlock the door
 # print("Unlocking the door...")
