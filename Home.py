@@ -1,31 +1,27 @@
-from switchbot import SwitchBot
+from python_switchbot_v2 import SwitchBot
 
-# Replace with your actual token and secret key
-YOUR_SWITCH_BOT_TOKEN = '44a34b2c9a2648af1ec327a7cca30bab1eb078780528165304bedcf0f00c0582497b7328124a016ec6844c5fcb0945f0'
+# Replace with your API Token and Secret Key
+YOUR_SWICH_BOT_TOKEN = '44a34b2c9a2648af1ec327a7cca30bab1eb078780528165304bedcf0f00c0582497b7328124a016ec6844c5fcb0945f0'
 YOUR_SWITCH_BOT_SECRET = '4e295a159d6b99dd5bc7f32147c5c3da'
 
-# Initialize the SwitchBot client
-switchbot = SwitchBot(token=YOUR_SWITCH_BOT_TOKEN, secret=YOUR_SWITCH_BOT_SECRET)
+switchbot = SwitchBot(token=YOUR_SWICH_BOT_TOKEN, secret=YOUR_SWITCH_BOT_SECRET)
 
-# List all devices to find the lock's ID (optional, but useful for verification)
+# List all devices to find your lock's ID
 devices = switchbot.devices()
 for device in devices:
-    print(device) # Example output: Lock(id=CD0A1221C291)
+    print(device) # Look for a line like 'Lock(id=CD0A1221C291)'
 
-# Assuming you have the device ID for your lock
-LOCK_DEVICE_ID = 'FFB4AF5C4B63' 
+# If you know the device ID (replace with your lock's actual ID):
+lock_id = 'FFB4AF5C4B63' 
+lock = switchbot.device(id=lock_id)
 
-# Get a specific lock device object
-lock = switchbot.device(id=LOCK_DEVICE_ID)
+# Command the lock
+print(f"Status: {lock.status()}") # Query the current status
 
 # Lock the door
-#print("Locking the door...")
-lock.lock()
+#lock.command('lock')
+print("Commanded to lock.")
 
 # Unlock the door
-# print("Unlocking the door...")
-# lock.unlock()
-
-# Toggle the lock status
-# print("Toggling the lock status...")
-# lock.toggle()
+# lock.command('unlock')
+# print("Commanded to unlock.")
