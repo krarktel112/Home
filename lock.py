@@ -12,7 +12,7 @@ for device in devices:
     print(device) # Look for a line like 'Lock(id=CD0A1221C291)'
 
 # If you know the device ID (replace with your lock's actual ID):
-lock_id = 'FF:B4:AF:5C:4B:63' 
+lock_id = 'FFB4AF5C4B63' 
 lock = switchbot.device(id=lock_id)
 
 # Command the lock
