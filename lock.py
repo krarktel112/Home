@@ -19,7 +19,7 @@ lock = switchbot.device(id=lock_id)
 print(f"Status: {lock.status()}") # Query the current status
 
 # Lock the door
-#lock.command('lock')
+lock.command('lock')
 print("Commanded to lock.")
 
 # Unlock the door
