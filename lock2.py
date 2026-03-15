@@ -14,7 +14,7 @@ async def main():
     lock_device = lock.SwitchbotLock(
         device=None, # Usually set by GetSwitchbotDevices, can be handled separately
         key_id=KEY_ID,
-        key=ENC_KEY,
+        ENCRYPTION_KEY=ENC_KEY,
         model=LOCK_MODEL,
         mac=BLE_MAC
     )
