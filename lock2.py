@@ -3,17 +3,29 @@ from switchbot.discovery import GetSwitchbotDevices
 from switchbot.devices import lock
 from switchbot.const import SwitchbotModel
 
-BLE_MAC="FF:B4:AF:5C:4B:63" # The MAC of your lock
-KEY_ID="3c" # The key-ID of your encryption-key for your lock
-ENCRYPTION_KEY="7fe3283b22eee778ac4727d900972e23" # The encryption-key with key-ID "XX"
-LOCK_MODEL=SwitchbotModel.LOCK # Your lock model (here we use the Lock-Pro)
-
+# --- CONFIGURATION ---
+BLE_MAC="FF:B4:AF:5C:4B:63"  # MAC address of your lock
+KEY_ID = "3c"                  # Key-ID from SwitchBot API
+ENC_KEY = "7fe3283b22eee778ac4727d900972e23" # Encryption key
+LOCK_MODEL = SwitchbotModel.LOCK # Or LOCK
 
 async def main():
-    wolock = await GetSwitchbotDevices().get_locks()
-    await lock.SwitchbotLock(
-        wolock[BLE_MAC].device, KEY_ID, ENCRYPTION_KEY, model=LOCK_MODEL
-    ).lock()
+    # 1. Discover or specifically address the lock
+    lock_device = lock.SwitchbotLock(
+        device=None, # Usually set by GetSwitchbotDevices, can be handled separately
+        key_id=KEY_ID,
+        key=ENC_KEY,
+        model=LOCK_MODEL,
+        mac=BLE_MAC
+    )
 
+    print("Attempting to Unlock...")
+    # 2. Unlock action
+    await lock_device.unlock()
+    print("Unlock command sent.")
 
-asyncio.run(main())
+    # 3. Lock action
+    # await lock_device.lock()
+
+if __name__ == "__main__":
+    asyncio.run(main())
