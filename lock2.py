@@ -12,7 +12,6 @@ LOCK_MODEL = SwitchbotModel.LOCK # Or LOCK
 async def main():
     # 1. Discover or specifically address the lock
     bot_lock = lock.SwitchbotLock(
-        lock.SwitchbotLock(
         lock_device[BLE_MAC].device, 
         KEY_ID, 
         ENC_KEY, 
