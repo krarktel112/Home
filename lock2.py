@@ -10,7 +10,11 @@ ENC_KEY = "7fe3283b22eee778ac4727d900972e23" # Encryption key
 LOCK_MODEL = SwitchbotModel.LOCK # Or LOCK
 
 async def main():
-    # 1. Discover or specifically address the lock
+    # Discover devices and select the lock
+    devices = GetSwitchbotDevices()
+    lock_device = await devices.get_locks()
+
+    # Create lock object
     bot_lock = lock.SwitchbotLock(
         lock_device[BLE_MAC].device, 
         KEY_ID, 
@@ -18,13 +22,11 @@ async def main():
         model=LOCK_MODEL
     )
 
-    print("Attempting to Unlock...")
-    # 2. Unlock action
+    # --- Actions ---
+    #print("Locking...")
+    #await bot_lock.lock()
+    
+    print("Unlocking...")
     await bot_lock.unlock()
-    print("Unlock command sent.")
 
-    # 3. Lock action
-    # await lock_device.lock()
-
-if __name__ == "__main__":
-    asyncio.run(main())
+asyncio.run(main())
