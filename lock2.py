@@ -11,17 +11,17 @@ LOCK_MODEL = SwitchbotModel.LOCK # Or LOCK
 
 async def main():
     # 1. Discover or specifically address the lock
-    lock_device = lock.SwitchbotLock(
-        device=None, # Usually set by GetSwitchbotDevices, can be handled separately
-        key_id=KEY_ID,
-        ENCRYPTION_KEY=ENC_KEY,
-        model=LOCK_MODEL,
-        mac=BLE_MAC
+    bot_lock = lock.SwitchbotLock(
+        lock.SwitchbotLock(
+        lock_device[BLE_MAC].device, 
+        KEY_ID, 
+        ENC_KEY, 
+        model=LOCK_MODEL
     )
 
     print("Attempting to Unlock...")
     # 2. Unlock action
-    await lock_device.unlock()
+    await bot_lock.unlock()
     print("Unlock command sent.")
 
     # 3. Lock action
